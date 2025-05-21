@@ -24,11 +24,7 @@ logger.info('------------------------------------------')
 logger.info('Loggin & configuration')
 logger.info('------------------------------------------')
 app.use(loggingHandler)
-app.use(cors({
-    credentials:true,
-    origin:['http://localhost:5173',config.URL]
-
-}))
+app.use(cors())
 app.use('/api',router)
 
 app.use(routeNotFound)
