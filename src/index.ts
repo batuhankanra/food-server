@@ -6,8 +6,6 @@ import { loggingHandler } from './middleware/loggingHandler'
 import router from './router/index.route'
 import { config } from './config'
 import cors from 'cors'
-import { fileURLToPath } from 'url'
-import path from 'path'
 
 
 export const app=express()
@@ -16,6 +14,7 @@ logger.info('Initializing Api')
 logger.info('------------------------------------------')
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
+app.use(cors());
 logger.info('------------------------------------------')
 logger.info('Mongo datebase')
 logger.info('------------------------------------------')
