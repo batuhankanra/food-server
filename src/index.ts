@@ -33,11 +33,7 @@ app.use('/api',router)
 
 app.use(routeNotFound)
 
-const frontendPath = path.join(__dirname, '..', 'frontend', 'dist');
-app.use(express.static(frontendPath));
-app.get('*', (req, res) => {
-  res.sendFile(path.join(frontendPath, 'index.html'));
-});
+
 logger.info('------------------------------------------')
 logger.info('Start server')
 logger.info('------------------------------------------')
