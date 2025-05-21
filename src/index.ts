@@ -26,28 +26,9 @@ logger.info('------------------------------------------')
 app.use(loggingHandler)
 // Render.com'da frontend'inizin URL'sini buraya ekleyin
 // Örnek: https://my-food-app-frontend.onrender.com
-const allowedOrigins = [
-    'https://food-client-d9or.onrender.com/',
-    // Eğer lokalde de test ediyorsanız:
-    'http://localhost:5173', // Vite'ın varsayılan geliştirme portu
-    'http://localhost:3000'  // React'in varsayılan geliştirme portu
-];
 
-const corsOptions: cors.CorsOptions = {
-    origin: (origin, callback) => {
-        // Eğer origin, izin verilenler listesindeyse veya origin yoksa (mobil uygulamalar/Postman gibi)
-        if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'], // İzin verilen HTTP metotları
-    allowedHeaders: ['Content-Type', 'Authorization'], // İzin verilen başlıklar
-    credentials: true // Eğer çerezler veya kimlik doğrulama tokenları gönderiyorsanız
-};
 
-app.use(cors(corsOptions));
+app.use(cors());
 app.use('/api',router)
 
 app.use(routeNotFound)
