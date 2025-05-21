@@ -9,12 +9,13 @@ import cors from 'cors'
 
 
 export const app=express()
+
+app.use(cors());
 logger.info('------------------------------------------')
 logger.info('Initializing Api')
 logger.info('------------------------------------------')
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
-app.use(cors());
 logger.info('------------------------------------------')
 logger.info('Mongo datebase')
 logger.info('------------------------------------------')
@@ -23,11 +24,8 @@ logger.info('------------------------------------------')
 logger.info('Loggin & configuration')
 logger.info('------------------------------------------')
 app.use(loggingHandler)
-// Render.com'da frontend'inizin URL'sini buraya ekleyin
-// Örnek: https://my-food-app-frontend.onrender.com
 
 
-app.use(cors());
 app.use('/api',router)
 
 app.use(routeNotFound)
