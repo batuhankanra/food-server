@@ -1,0 +1,39 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.app = void 0;
+const express_1 = __importDefault(require("express"));
+const logger_1 = __importDefault(require("./lib/logger"));
+const db_1 = require("./lib/db");
+const routeNotFound_1 = require("./middleware/routeNotFound");
+const loggingHandler_1 = require("./middleware/loggingHandler");
+const index_route_1 = __importDefault(require("./router/index.route"));
+const config_1 = require("./config");
+const cors_1 = __importDefault(require("cors"));
+exports.app = (0, express_1.default)();
+logger_1.default.info('------------------------------------------');
+logger_1.default.info('Initializing Api');
+logger_1.default.info('------------------------------------------');
+exports.app.use(express_1.default.urlencoded({ extended: true }));
+exports.app.use(express_1.default.json());
+logger_1.default.info('------------------------------------------');
+logger_1.default.info('Mongo datebase');
+logger_1.default.info('------------------------------------------');
+(0, db_1.db)();
+logger_1.default.info('------------------------------------------');
+logger_1.default.info('Loggin & configuration');
+logger_1.default.info('------------------------------------------');
+exports.app.use(loggingHandler_1.loggingHandler);
+exports.app.use((0, cors_1.default)({
+    credentials: true,
+    origin: ['http://localhost:5173', config_1.config.URL]
+}));
+exports.app.use('/api', index_route_1.default);
+exports.app.use(routeNotFound_1.routeNotFound);
+logger_1.default.info('------------------------------------------');
+logger_1.default.info('Start server');
+logger_1.default.info('------------------------------------------');
+exports.app.listen(config_1.config.PORT, () => logger_1.default.info(`server is running:${config_1.config.PORT}`));
+//# sourceMappingURL=index.js.map
