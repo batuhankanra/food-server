@@ -8,11 +8,11 @@ const express_1 = __importDefault(require("express"));
 const logger_1 = __importDefault(require("./lib/logger"));
 const db_1 = require("./lib/db");
 const routeNotFound_1 = require("./middleware/routeNotFound");
-const loggingHandler_1 = require("./middleware/loggingHandler");
 const index_route_1 = __importDefault(require("./router/index.route"));
 const config_1 = require("./config");
 const cors_1 = __importDefault(require("cors"));
 exports.app = (0, express_1.default)();
+exports.app.use((0, cors_1.default)({ origin: true, credentials: true }));
 logger_1.default.info('------------------------------------------');
 logger_1.default.info('Initializing Api');
 logger_1.default.info('------------------------------------------');
@@ -25,11 +25,6 @@ logger_1.default.info('------------------------------------------');
 logger_1.default.info('------------------------------------------');
 logger_1.default.info('Loggin & configuration');
 logger_1.default.info('------------------------------------------');
-exports.app.use(loggingHandler_1.loggingHandler);
-exports.app.use((0, cors_1.default)({
-    credentials: true,
-    origin: ['http://localhost:5173', config_1.config.URL]
-}));
 exports.app.use('/api', index_route_1.default);
 exports.app.use(routeNotFound_1.routeNotFound);
 logger_1.default.info('------------------------------------------');
