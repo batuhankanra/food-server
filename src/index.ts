@@ -27,7 +27,6 @@ db()
 logger.info('------------------------------------------')
 logger.info('Loggin & configuration')
 logger.info('------------------------------------------')
-app.use(loggingHandler)
 
 
 app.use('/api',router)
