@@ -10,7 +10,7 @@ import cors from 'cors'
 
 export const app=express()
 
-app.use(cors());
+app.use(cors({origin: true,credentials: true}));
 app.use((req, res, next) => {
     console.log('CORS Header:', res.get('Access-Control-Allow-Origin'));
     next();
