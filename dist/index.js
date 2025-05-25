@@ -12,7 +12,7 @@ const index_route_1 = __importDefault(require("./router/index.route"));
 const config_1 = require("./config");
 const cors_1 = __importDefault(require("cors"));
 exports.app = (0, express_1.default)();
-exports.app.use((0, cors_1.default)({ origin: ['https://food-client-d9or.onrender.com', 'https://food-client-d9or.onrender.com/tarifAdmin'] }));
+exports.app.use((0, cors_1.default)());
 logger_1.default.info('------------------------------------------');
 logger_1.default.info('Initializing Api');
 logger_1.default.info('------------------------------------------');

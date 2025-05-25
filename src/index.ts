@@ -2,7 +2,6 @@ import express from 'express'
 import logger from './lib/logger'
 import { db } from './lib/db'
 import { routeNotFound } from './middleware/routeNotFound'
-import { loggingHandler } from './middleware/loggingHandler'
 import router from './router/index.route'
 import { config } from './config'
 import cors from 'cors'
@@ -10,7 +9,7 @@ import cors from 'cors'
 
 export const app=express()
 
-app.use(cors({origin:['https://food-client-d9or.onrender.com','https://food-client-d9or.onrender.com/tarifAdmin']}));
+app.use(cors());
 
 logger.info('------------------------------------------')
 logger.info('Initializing Api')
