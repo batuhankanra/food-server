@@ -9,7 +9,7 @@ import cors from 'cors'
 
 export const app=express()
 
-app.use(cors({origin: true,credentials: true}));
+app.use(cors({origin:'https://food-client-d9or.onrender.com'}));
 
 logger.info('------------------------------------------')
 logger.info('Initializing Api')
