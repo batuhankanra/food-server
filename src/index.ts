@@ -9,10 +9,7 @@ import cors from 'cors'
 
 export const app=express()
 
-app.use(cors({origin: ['https://food-client-d9or.onrender.com/','https://food-client-d9or.onrender.com/tarifAdmin'], // Frontend uygulamanızın çalıştığı adres
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true, // Eğer cookie'ler veya kimlik doğrulama token'ları kullanıyorsanız
-  optionsSuccessStatus: 204}));
+app.use(cors({origin: true,credentials: true}));
 
 logger.info('------------------------------------------')
 logger.info('Initializing Api')
