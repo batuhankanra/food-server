@@ -9,7 +9,10 @@ import cors from 'cors'
 
 export const app=express()
 
-app.use(cors());
+app.use(cors({origin: 'http://localhost:3001', // Frontend uygulamanızın çalıştığı adres
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true, // Eğer cookie'ler veya kimlik doğrulama token'ları kullanıyorsanız
+  optionsSuccessStatus: 204}));
 
 logger.info('------------------------------------------')
 logger.info('Initializing Api')
